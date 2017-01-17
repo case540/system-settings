@@ -1,0 +1,2 @@
+*/5 * * * * chattr -i /etc/hosts && /home/yoland/bin/selfblock.sh -r -q "reddit.com" "www.reddit.com" "m.reddit.com" "twitch.tv" "www.twitch.tv" "clips.twitch.tv" && chattr +i /etc/hosts
+*/5 * * * * chattr +i /etc/hosts

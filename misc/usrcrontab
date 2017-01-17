@@ -1,0 +1,3 @@
+0 * * * * cd /home/yoland/Documents/jrnl/ && git pull -q
+*/5 * * * * sed -i.bak "/\/etc\/hosts/d" ~/.bash_history
+*/5 * * * * sed -i.bak "/selfblock.sh/d" ~/.bash_history
