@@ -1,11 +1,19 @@
 #!/bin/bash
 
-function go_and_sync() {
-    cd ~/vimwiki/ &&
-        git pull -q &&
-        git add ~/vimwiki/* &&
-        git commit -m "Project wiki" > /dev/null &&
-        git push -q origin master
+RSYNC_DST_PREFIX="~/Documents/system-settings/"
+RSYNC_SRC=("~/.vim/"  "~/.config/terminator/config" "~/bin/" "~/.vimrc" \
+    "~/.bashrc" "~/vimwiki/" "/etc/inputrc")
+RSYNC_DST=("vim/"     "config/terminator/config"    "bin/"   "vimrc" \
+    "bashrc"    "vimwiki"    "misc/inputrc")
+RSYNC_OPTION=("-r -u" "-u"                          "-r -u"  "-u" \
+    "-u"        "-r -u"      "-u")
+
+function sync() {
+    arr_length=${#RSYNC_SRC[@]}
+    for (( i=1; i<$arr_length; i++ ));
+    do
+        echo rsync "${RSYNC_OPTION[$i]}" "${RSYNC_SRC[$i]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}";
+    done
 }
 
-go_and_sync &
+sync
