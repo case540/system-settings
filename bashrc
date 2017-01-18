@@ -2,8 +2,14 @@
 set -o vi
 export PATH=$PATH:/home/yoland/bin
 
+# For Android development
+export PATH=$PATH:/home/yoland/Android/Sdk/tools
+export PATH=$PATH:/home/yoland/Android/Sdk/platform-tools
+
 # Add google_appengine dir to PATH
 export PATH=$PATH:/home/yoland/bin/google_appengine/
+
+export EDITOR="vim"
 
 # Random shit
 alias code="cd ~/Code"
@@ -24,11 +30,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       . /etc/bash_completion
 fi
 
+# Alias wa to be `wunderline add`
+alias spotify="spotify --force-device-scale-factor=2"
+
 # Wrapper for jrnl
 alias jrnl="/home/yoland/bin/yo-jrnl"
 
 # Load git-prompt.sh
-source /home/yoland/.git-prompt.sh
+source /home/yoland/.bash-git-prompt/gitprompt.sh
 
 # Fuck alias
 eval $(thefuck --alias)
@@ -86,10 +95,6 @@ alias .....="cd ../../../.."
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
-# Colored up cat!
-# You must install Pygments first - "sudo easy_install Pygments"
-alias c='pygmentize -O style=monokai -f console256 -g'
 
 # Git
 # You must install Git first
@@ -174,3 +179,9 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+# added by Anaconda3 4.2.0 installer
+export PATH="$PATH:/home/yoland/anaconda3/bin"
+
+# HISTFILESIZE
+export HISTFILESIZE=10000
