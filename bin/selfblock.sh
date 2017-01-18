@@ -19,7 +19,11 @@ function resume_block()
         else
             sudo echo "$ITEM" >> $ETC_FILE && PUNISH="yes" && if [ "$QUITE" != "yes" ]; then echo "Added $i"; fi
         fi
-        if [ "$PUNISH" != "no" ]; then kill -9 $(pgrep 'x-term') && PUNISH="no"; fi
+        if [ "$PUNISH" != "no" ]; then
+            killall chrome &
+            kill -9 $(pgrep 'term') &
+            PUNISH="no"
+        fi
     done
 }
 
