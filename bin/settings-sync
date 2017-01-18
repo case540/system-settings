@@ -22,13 +22,13 @@ function sync() {
     if [ "$to_echo" == yes ]; then
         ECHOTHIS="echo"
     fi
-    if [ "$(whoami)" == root ]; then
-        crontab -l > ${RSYNC_DST_PREFIX}misc/rootcrontab
-        exit
-    else
-        out=${RSYNC_DST_PREFIX}misc/usrcrontab
-        crontab -l | tee "$out"
-    fi
+#    if [ "$(whoami)" == root ]; then
+        #crontab -l > ${RSYNC_DST_PREFIX}misc/rootcrontab
+        #exit
+    #else
+        #out=${RSYNC_DST_PREFIX}misc/usrcrontab
+        #crontab -l | tee "$out"
+    #fi
     OTHER_OPTION=()
     if [ "$to_force" != yes ]; then
         OTHER_OPTION+=("-u")
@@ -39,7 +39,11 @@ function sync() {
     arr_length=${#RSYNC_SRC[@]}
     for (( i=1; i<$arr_length; i++ ));
     do
-        eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_SRC[$i]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}";
+        if [ "$to_reverse" == yes ]; then
+            eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}" "${RSYNC_SRC[$i]}";
+        else
+            eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_SRC[$i]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}";
+        fi
     done
     go_and_update
 }
