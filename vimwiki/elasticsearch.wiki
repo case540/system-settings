@@ -1,5 +1,0 @@
-= Elastic search learning =
-
-== Steps ==
-* Go through the tutorial https://www.youtube.com/watch?v=60UsHHsKyN4
-* Come up with ideas to use elastic search
