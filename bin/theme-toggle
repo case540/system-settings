@@ -1,0 +1,59 @@
+#!/bin/bash
+
+function set_vim() {
+}
+function set_bash() {
+}
+function set_background() {
+}
+function set_unity_theme() {
+}
+function set_eclipse() {
+    ~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs:themeid=org.eclipse.e4.ui.css.theme.e4_dark
+    ~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs:themeid=org.eclipse.e4.ui.css.theme.e4_default
+}
+function set_android_studio() {
+    ~/usr/local/google/home/yolandyan/.AndroidStudio2.1/config/options/colors.scheme.xml
+}
+function set_idea_ce() {
+}
+
+while [[ $# > 0 ]]
+do
+    key="$1"
+    case $key in
+        -d|--reverse)
+            to_dark=yes
+            shift
+            ;;
+        -l|--light)
+            to_dark=no;
+            shift
+            ;;
+        -e|--echo)
+            to_echo=yes;
+            shift
+            ;;
+        -q|--quite)
+            quite=yes
+            shift
+            ;;
+        *)
+            echo "Unrecognized option $key" 1>&2
+            exit
+            ;;
+    esac
+done
+
+if [ "$to_dark" == yes ]; then
+    set_vim dark
+    set_bash dark
+    set_background dark
+    set_unity_theme dark
+else
+    set_vim dark
+    set_bash dark
+    set_background dark
+    set_unity_theme dark
+
+
