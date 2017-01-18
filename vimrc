@@ -69,8 +69,12 @@ filetype plugin indent on    " required
 "syntax and color theme
 syntax enable
 set t_Co=256
+"Light theme
 colorscheme solarized
 set background=light
+"Dark theme
+" colorscheme Tomorrow-Night-Eighties
+" set background=dark
 " indentation
 set ai
 set si
