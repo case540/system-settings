@@ -1,13 +1,1 @@
-= Projects =
-
-[[gopokedex]]
-
-[[StockHawk]]
-
-[[Dash-controller]]
-
-== Later ==
-
-[[elasticsearch]]
-
-== Done ==
+= [[Projects]] =
