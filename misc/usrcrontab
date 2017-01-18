@@ -1,0 +1,6 @@
+0 */1 * * * /home/yoland/bin/project-wiki-bridge
+0 7 * * * cd /home/yoland/Documents/jrnl && git pull -q
+0 23 * * * cd /home/yoland/Documents/jrnl && git pull -q
+*/5 * * * * sed -i.bak "/\/etc\/hosts/d" ~/.bash_history
+*/5 * * * * sed -i.bak "/selfblock.sh/d" ~/.bash_history
+0 */2 * * * /home/yoland/bin/settings-sync
