@@ -1,0 +1,30 @@
+#!/bin/bash
+
+while [[ $# > 0 ]]
+do
+    key="$1"
+    case $key in
+        -d|--reverse)
+            to_dark=yes
+            shift
+            ;;
+        -l|--light)
+            to_dark=no;
+            shift
+            ;;
+        -e|--echo)
+            to_dry_run=yes;
+            shift
+            ;;
+        -q|--quite)
+            quite=yes
+            shift
+            ;;
+        *)
+            echo "Unrecognized option $key" 1>&2
+            exit
+            ;;
+    esac
+done
+
+
