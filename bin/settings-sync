@@ -15,7 +15,7 @@ function go_and_update() {
         git checkout "$BRANCH_NAME" -q &&
         git add -A &&
         git commit -m "settings updates" > /dev/null &&
-        git push -q -u origin "$BRANCH_NAME"
+        git push -q -u origin "$BRANCH_NAME" > /dev/null
 }
 
 function sync() {
@@ -78,7 +78,5 @@ do
             ;;
     esac
 done
-
-
 
 sync
