@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function go_and_sync() {
+    cd ~/vimwiki/ &&
+        git pull -q &&
+        git add ~/vimwiki/* &&
+        git commit -m "Project wiki" > /dev/null &&
+        git push -q origin master
+}
+
+go_and_sync &

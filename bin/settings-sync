@@ -1,0 +1,82 @@
+#!/bin/bash
+
+BRANCH_NAME="ubuntu-laptop"
+
+RSYNC_DST_PREFIX="~/Documents/system-settings/"
+RSYNC_SRC=("~/.vim/"  "~/.config/terminator/config" "~/bin/" "~/.vimrc" \
+    "~/.bashrc" "~/vimwiki/" "/etc/inputrc")
+RSYNC_DST=("vim/"     "config/terminator/config"    "bin/"   "vimrc" \
+    "bashrc"    "vimwiki"    "misc/inputrc")
+RSYNC_OPTION=("-r" ""                          "-r"  "" \
+    ""        "-r"      "")
+
+function go_and_update() {
+    cd ~/Documents/system-settings &&
+        git checkout "$BRANCH_NAME" -q &&
+        git add -A &&
+        git commit -m "settings updates" > /dev/null &&
+        git push -q -u origin "$BRANCH_NAME" > /dev/null
+}
+
+function sync() {
+    if [ "$to_echo" == yes ]; then
+        ECHOTHIS="echo"
+    fi
+#    if [ "$(whoami)" == root ]; then
+        #crontab -l > ${RSYNC_DST_PREFIX}misc/rootcrontab
+        #exit
+    #else
+        #out=${RSYNC_DST_PREFIX}misc/usrcrontab
+        #crontab -l | tee "$out"
+    #fi
+    OTHER_OPTION=()
+    if [ "$to_force" != yes ]; then
+        OTHER_OPTION+=("-u")
+    fi
+    if [ "$to_dry_run" == yes ]; then
+        OTHER_OPTION+=("-n")
+    fi
+    arr_length=${#RSYNC_SRC[@]}
+    for (( i=1; i<$arr_length; i++ ));
+    do
+        if [ "$to_reverse" == yes ]; then
+            eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}" "${RSYNC_SRC[$i]}";
+        else
+            eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_SRC[$i]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}";
+        fi
+    done
+    go_and_update
+}
+
+while [[ $# > 0 ]]
+do
+    key="$1"
+    case $key in
+        -r|--reverse)
+            to_reverse=yes
+            shift
+            ;;
+        -e|--echo)
+            to_echo=yes;
+            shift
+            ;;
+        -n|--dry-run)
+            to_dry_run=yes;
+            shift
+            ;;
+        -f|--force)
+            to_force=yes
+            shift
+            ;;
+        -q|--quite)
+            quite=yes
+            shift
+            ;;
+        *)
+            echo "Unrecognized option $key" 1>&2
+            exit
+            ;;
+    esac
+done
+
+sync

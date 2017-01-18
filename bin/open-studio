@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/local/etc/android-studio/bin/studio.sh &> /dev/null &
