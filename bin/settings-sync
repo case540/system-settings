@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BRANCH_NAME="ubuntu-laptop"
+BRANCH_NAME="home-desktop"
 
 RSYNC_DST_PREFIX="~/Documents/system-settings/"
 RSYNC_SRC=("~/.vim/"  "~/.config/terminator/config" "~/bin/" "~/.vimrc" \
