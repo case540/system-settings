@@ -1,0 +1,24 @@
+= Dash controller =
+
+== Goal ==
+* MVP 0.0: have the dashbutton turn on spotify and play Born Hater
+* MVP 0.01: have a rasp pie/PC + audio listen to the button push and do action 
+* MVP 0.1: add more functionality (record time, WSO recording, hair massage recording)
+* MVP 0.2: use ESP8266 instead
+
+== Steps ==
+* MVP 0.0:
+    * [o] Spotify API
+        * [X] <s>bash command: sp</s>
+        * [X] <s>dbus: qdbus org.mpris.MediaPlayer2.spotify \</s>
+              <s>/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause</s>
+        * [ ] digger more on proper Spotify API <-- Later
+    * [X] <s>ARP Probe</s>
+    * [ ] Solve the sudo issue with scapy <-- Now
+
+
+== Others ==
+* Look into scapy and ARP
+* Look into dbus
+* Look into other people's ESP8266 project
+
