@@ -49,8 +49,6 @@ alias gch='git checkout' # requires a branch name
 
 
 ### Prompt Colors 
-# Modified version of @gf3Ã¢ÂÂs Sexy Bash Prompt 
-# (https://github.com/gf3/dotfiles)
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM=gnome-256color
 elif infocmp xterm-256color >/dev/null 2>&1; then
