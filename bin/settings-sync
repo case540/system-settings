@@ -26,8 +26,8 @@ function sync() {
         crontab -l > ${RSYNC_DST_PREFIX}misc/rootcrontab
         exit
     else
-        echo ${RSYNC_DST_PREFIX}misc/usrcrontab
-        crontab -l > ${RSYNC_DST_PREFIX}misc/usrcrontab
+        out=${RSYNC_DST_PREFIX}misc/usrcrontab
+        crontab -l | tee "$out"
     fi
     OTHER_OPTION=()
     if [ "$to_force" != yes ]; then
