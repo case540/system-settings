@@ -240,3 +240,6 @@ endfunction
 
 " Map so visual mode's search find selected text
 vnoremap // y/<C-R>"<CR>
+
+" Wild ignore files
+set wildignore+=*/.git/*,*/.idea/*,*/.DS_Store,*/system-settings/bin/*

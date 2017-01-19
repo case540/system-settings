@@ -1,22 +1,78 @@
 #!/bin/bash
 
+function switcheroo() {
+    if [ -n "$light" ]; then
+        echo "Light config is unset"
+        exit
+    fi 
+    if [ -n "$dark" ]; then
+        echo "Dark config is unset"
+        exit
+    fi 
+    if [ -n "$file" ]; then
+        echo "File is unset"
+        exit
+    fi 
+    if [ "$1" == dark ]; then
+        eval "$ECHOTHIS" sed -i "s/^${light}$/${dark}/g" "$file"
+    else
+        eval "$ECHOTHIS" sed -i "s/^${dark}$/${light}/g" "$file"
+    fi
+}
+
 function set_vim() {
+    if [ "$1" == dark ]; then
+        echo "set vim dark"
+    else
+        echo "set vim light"
+    fi
 }
+
 function set_bash() {
+    if [ "$1" == dark ]; then
+        echo "set bash dark"
+    else
+        echo "set bash light"
+    fi
 }
+
 function set_background() {
+    if [ "$1" == dark ]; then
+        echo "set background dark"
+    else
+        echo "set background light"
+    fi
 }
+
 function set_unity_theme() {
+    if [ "$1" == dark ]; then
+        echo "set unity dark"
+    else
+        echo "set unity light"
+    fi
 }
+
 function set_eclipse() {
-    ~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs:themeid=org.eclipse.e4.ui.css.theme.e4_dark
-    ~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs:themeid=org.eclipse.e4.ui.css.theme.e4_default
+    file="~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs"
+    light="themeid=org.eclipse.e4.ui.css.theme.e4_default"
+    dark="themeid=org.eclipse.e4.ui.css.theme.e4_dark"
+    switcheroo
 }
+
 function set_android_studio() {
-    ~/usr/local/google/home/yolandyan/.AndroidStudio2.1/config/options/colors.scheme.xml
+    file="~/.AndroidStudio2.1/config/options/colors.scheme.xml"
+    light="    <global_color_scheme name=\"Yoland\" />"
+    dark="    <global_color_scheme name=\"Black Yoland\" />"
+    switcheroo
 }
+
 function set_idea_ce() {
+    file="~/.IdeaIC2016.2/config/options/colors.scheme.xml"
+    light="    <global_color_scheme name=\"Yoland\" />"
+    dark="    <global_color_scheme name=\"Black Yoland\" />"
+    switcheroo
 }
+
 
 while [[ $# > 0 ]]
 do
@@ -31,7 +87,7 @@ do
             shift
             ;;
         -e|--echo)
-            to_echo=yes;
+            ECHOTHIS="echo";
             shift
             ;;
         -q|--quite)
@@ -45,6 +101,7 @@ do
     esac
 done
 
+
 if [ "$to_dark" == yes ]; then
     set_vim dark
     set_bash dark
@@ -55,5 +112,3 @@ else
     set_bash dark
     set_background dark
     set_unity_theme dark
-
-
