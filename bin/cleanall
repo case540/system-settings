@@ -1,14 +1,15 @@
 #!/bin/bash
 
-wmctrl -l | grep -e "[^ ]*  0 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-wmctrl -l | grep -e "[^ ]*  1 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-wmctrl -l | grep -e "[^ ]*  3 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-ps -auxf | grep eclipse | awk '{print $2}' | xargs -I {} kill -s TERM {}
-ps -auxf | grep android-studio | awk '{print $2}' | xargs -I {} kill -s TERM {}
-ps -auxf | grep intellij-ce | awk '{print $2}' | xargs -I {} kill -s TERM {}
-killall -15 xpad 2> /dev/null
-killall -15 nemo 2> /dev/null
-killall -15 nautilus 2> /dev/null
-killall xmessage 2> /dev/null
-killall spotify 2> /dev/null
+wmctrl -l | grep -e "[^ ]*  0 " | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
+wmctrl -l | grep -e "[^ ]*  1 " | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
+wmctrl -l | grep -e "[^ ]*  2 " | grep -v "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
+wmctrl -l | grep -e "[^ ]*  3 " | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
+#ps -auxf | grep eclipse | awk '{print $2}' | xargs -I {} kill -s TERM {}
+#ps -auxf | grep android-studio | awk '{print $2}' | xargs -I {} kill -s TERM {}
+#ps -auxf | grep intellij-ce | awk '{print $2}' | xargs -I {} kill -s TERM {}
+#killall -15 xpad 2> /dev/null
+#killall -15 nemo 2> /dev/null
+#killall -15 nautilus 2> /dev/null
+#killall xmessage 2> /dev/null
+#killall spotify 2> /dev/null
 ps -auxf | grep terminator | awk '{print $2}' | grep -v $$ | xargs -I {} kill -s TERM {}
