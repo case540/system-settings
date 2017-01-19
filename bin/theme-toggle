@@ -1,15 +1,86 @@
 #!/bin/bash
 
+function switcheroo() {
+    if [ -z "$light" ]; then
+        echo "Light config is unset"
+        exit
+    fi 
+    if [ -z "$dark" ]; then
+        echo "Dark config is unset"
+        exit
+    fi 
+    if [ -z $file ]; then
+        echo "File is unset"
+        exit
+    fi 
+    if [ "$to_dark" == yes ]; then
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${light}$/${dark}/g\"" $file
+        else
+            sed -i "s/^${light}$/${dark}/g" $file
+        fi
+    else
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${dark}$/${light}/g\"" $file
+        else
+            sed -i "s/^${dark}$/${light}/g" $file
+        fi
+    fi
+}
+
 function set_vim() {
+    file=~/.vimrc
+    light="colorscheme solarized"
+    dark="colorscheme Tomorrow-Night-Eighties"
+    switcheroo
+    light="let g:airline_theme='solarized'"
+    dark="let g:airline_theme='base16_mocha'"
+    switcheroo
+    light="set background=light"
+    dark="set background=dark"
+    switcheroo
 }
-function set_bash() {
+
+function set_terminator() {
+    file=~/.config/terminator/config
+    light="      profile = default"
+    dark="      profile = tne"
+    switcheroo
 }
+
 function set_background() {
+    if [ "$to_dark" == yes ]; then
+        gsettings set org.gnome.desktop.background picture-uri 'file:///home/yoland/Pictures/Wallpapers/dark-pattern.png'
+    else
+        gsettings set org.gnome.desktop.background picture-uri 'file:///home/yoland/Pictures/Wallpapers/light-pattern.png'
+    fi
 }
+
 function set_unity_theme() {
+    echo $contain_quote
+    if [ "$to_dark" == yes ]; then
+        gsettings set org.gnome.desktop.wm.preferences theme 'Libra-Dark'
+        gsettings set org.gnome.desktop.interface gtk-theme 'Libra-Dark'
+    else
+        gsettings set org.gnome.desktop.wm.preferences theme 'Ambiance'
+        gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+    fi
 }
-function set_vim() {
+
+function set_android_studio() {
+    file=~/.AndroidStudio2.2/config/options/colors.scheme.xml
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
+    switcheroo
 }
+
+function set_idea_ce() {
+    file=~/.IdeaIC2016.3/config/options/colors.scheme.xml
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
+    switcheroo
+}
+
 
 while [[ $# > 0 ]]
 do
@@ -24,7 +95,7 @@ do
             shift
             ;;
         -e|--echo)
-            to_echo=yes;
+            ECHOTHIS="echo";
             shift
             ;;
         -q|--quite)
@@ -38,15 +109,10 @@ do
     esac
 done
 
-if [ "$to_dark" == yes ]; then
-    set_vim dark
-    set_bash dark
-    set_background dark
-    set_unity_theme dark
-else
-    set_vim dark
-    set_bash dark
-    set_background dark
-    set_unity_theme dark
 
-
+set_vim
+set_terminator
+set_background
+set_unity_theme
+set_android_studio
+set_idea_ce
