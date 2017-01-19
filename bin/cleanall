@@ -1,9 +1,6 @@
 #!/bin/bash
 
-wmctrl -l | grep -e "[^ ]*  0 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-wmctrl -l | grep -e "[^ ]*  1 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-wmctrl -l | grep -e "[^ ]*  2 " | grep "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
-wmctrl -l | grep -e "[^ ]*  3 " | grep -v "Google Chrome" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
+wmctrl -l | grep -e "[^ ]*  0 " | grep "Google Chrome" | grep -v "Yoland's Dashboard" | grep -v "Goal Progress Sheet" | grep -v "Toggl" | awk '{print $1}' | xargs -I {} wmctrl -i -c {}
 ps -auxf | grep eclipse | awk '{print $2}' | xargs -I {} kill -s TERM {}
 ps -auxf | grep android-studio | awk '{print $2}' | xargs -I {} kill -s TERM {}
 ps -auxf | grep intellij-ce | awk '{print $2}' | xargs -I {} kill -s TERM {}
