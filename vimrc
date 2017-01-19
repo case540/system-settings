@@ -69,17 +69,10 @@ filetype plugin indent on    " required
 "syntax and color theme
 syntax enable
 set t_Co=256
-" Light mode
+colorscheme Tomorrow-Night-Eighties
+let g:airline_theme='base16_mocha'
+set background=dark
 
-" End of Light mode
-colorscheme solarized
-let g:airline_theme='solarized'
-set background=light
-" " Dark mode
-" colorscheme Tomorrow-Night-Eighties
-" let g:airline_theme='base16_mocha'
-" set background=dark
-" End of dark mode
 " indentation
 set ai
 set si
@@ -243,3 +236,13 @@ vnoremap // y/<C-R>"<CR>
 
 " Wild ignore files
 set wildignore+=*/.git/*,*/.idea/*,*/.DS_Store,*/system-settings/bin/*
+
+"" Light and dark mode
+" colorscheme solarized
+" let g:airline_theme='solarized'
+" set background=light
+" colorscheme Tomorrow-Night-Eighties
+" let g:airline_theme='base16_mocha'
+" set background=dark
+
+

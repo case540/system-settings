@@ -1,73 +1,89 @@
 #!/bin/bash
 
 function switcheroo() {
-    if [ -n "$light" ]; then
+    if [ -z "$light" ]; then
         echo "Light config is unset"
         exit
     fi 
-    if [ -n "$dark" ]; then
+    if [ -z "$dark" ]; then
         echo "Dark config is unset"
         exit
     fi 
-    if [ -n "$file" ]; then
+    if [ -z $file ]; then
         echo "File is unset"
         exit
     fi 
-    if [ "$1" == dark ]; then
-        eval "$ECHOTHIS" sed -i "s/^${light}$/${dark}/g" "$file"
+    if [ "$to_dark" == yes ]; then
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${light}$/${dark}/g\"" $file
+        else
+            sed -i "s/^${light}$/${dark}/g" $file
+        fi
     else
-        eval "$ECHOTHIS" sed -i "s/^${dark}$/${light}/g" "$file"
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${dark}$/${light}/g\"" $file
+        else
+            sed -i "s/^${dark}$/${light}/g" $file
+        fi
     fi
 }
 
 function set_vim() {
-    if [ "$1" == dark ]; then
-        echo "set vim dark"
-    else
-        echo "set vim light"
-    fi
+    file=~/.vimrc
+    light="colorscheme solarized"
+    dark="colorscheme Tomorrow-Night-Eighties"
+    switcheroo
+    light="let g:airline_theme='solarized'"
+    dark="let g:airline_theme='base16_mocha'"
+    switcheroo
+    light="set background=light"
+    dark="set background=dark"
+    switcheroo
 }
 
-function set_bash() {
-    if [ "$1" == dark ]; then
-        echo "set bash dark"
-    else
-        echo "set bash light"
-    fi
+function set_terminator() {
+    file=~/.config/terminator/config
+    light="      profile = default"
+    dark="      profile = tne"
+    switcheroo
 }
 
 function set_background() {
-    if [ "$1" == dark ]; then
-        echo "set background dark"
+    if [ "$to_dark" == yes ]; then
+        eval "$ECHOTHIS" gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/dark-pattern.png'
     else
-        echo "set background light"
+        eval "$ECHOTHIS" gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/light-pattern.png'
     fi
 }
 
 function set_unity_theme() {
-    if [ "$1" == dark ]; then
-        echo "set unity dark"
+    if [ "$to_dark" == yes ]; then
+        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.wm.preferences theme 'nightfall'
+        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.interface gtk-theme 'Libra-Dark'
+        eval "$ECHOTHIS" gsettings set org.cinnamon.theme name 'nightfall'
     else
-        echo "set unity light"
+        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.wm.preferences theme "'Windows 10 Light'"
+        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.interface gtk-theme "'Windows 10 Light'"
+        eval "$ECHOTHIS" gsettings set org.cinnamon.theme name "'Elementary Luna Mod'"
     fi
 }
 
 function set_eclipse() {
-    file="~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs"
+    file=~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs
     light="themeid=org.eclipse.e4.ui.css.theme.e4_default"
     dark="themeid=org.eclipse.e4.ui.css.theme.e4_dark"
     switcheroo
 }
 
 function set_android_studio() {
-    file="~/.AndroidStudio2.1/config/options/colors.scheme.xml"
+    file=~/.AndroidStudio2.1/config/options/colors.scheme.xml
     light="    <global_color_scheme name=\"Yoland\" />"
     dark="    <global_color_scheme name=\"Black Yoland\" />"
     switcheroo
 }
 
 function set_idea_ce() {
-    file="~/.IdeaIC2016.2/config/options/colors.scheme.xml"
+    file=~/.IdeaIC2016.2/config/options/colors.scheme.xml
     light="    <global_color_scheme name=\"Yoland\" />"
     dark="    <global_color_scheme name=\"Black Yoland\" />"
     switcheroo
@@ -102,13 +118,8 @@ do
 done
 
 
-if [ "$to_dark" == yes ]; then
-    set_vim dark
-    set_bash dark
-    set_background dark
-    set_unity_theme dark
-else
-    set_vim dark
-    set_bash dark
-    set_background dark
-    set_unity_theme dark
+set_vim
+set_terminator
+set_background
+set_unity_theme
+

@@ -1,5 +1,7 @@
 [global_config]
+  always_split_with_profile = True
   borderless = True
+  handle_size = 5
   homogeneous_tabbar = False
   scroll_tabbar = True
   tab_position = left
@@ -11,29 +13,11 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = default
+      profile = tne
       type = Terminal
     [[[window0]]]
       parent = ""
       type = Window
-  [[darkdefault]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = f479ccb4-730a-4fb5-9d94-00280e8081da
-      last_active_window = True
-      maximised = False
-      order = 0
-      parent = ""
-      position = 623:705
-      size = 655, 427
-      title = yolandyan
-      type = Window
-    [[[terminal1]]]
-      order = 0
-      parent = child0
-      profile = Tomorrow Night Eighties
-      type = Terminal
-      uuid = f479ccb4-730a-4fb5-9d94-00280e8081da
 [plugins]
 [profiles]
   [[default]]
@@ -47,7 +31,13 @@
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     show_titlebar = False
     use_system_font = False
-  [[Tomorrow Night Eighties]]
+  [[darkdafult]]
+    background_image = None
+    cursor_blink = False
+    font = Hack 11
+    icon_bell = False
+    use_system_font = False
+  [[tne]]
     background_color = "#2d2d2d"
     background_image = None
     cursor_blink = False
@@ -56,10 +46,4 @@
     foreground_color = "#cccccc"
     palette = "#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff:#a3a3a3:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff"
     show_titlebar = False
-    use_system_font = False
-  [[darkdafult]]
-    background_image = None
-    cursor_blink = False
-    font = Hack 11
-    icon_bell = False
     use_system_font = False
