@@ -50,21 +50,21 @@ function set_terminator() {
 
 function set_background() {
     if [ "$to_dark" == yes ]; then
-        eval "$ECHOTHIS" gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/dark-pattern.png'
+        gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/dark-pattern.png'
     else
-        eval "$ECHOTHIS" gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/light-pattern.png'
+        gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/light-pattern.png'
     fi
 }
 
 function set_unity_theme() {
     if [ "$to_dark" == yes ]; then
-        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.wm.preferences theme 'nightfall'
-        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.interface gtk-theme 'Libra-Dark'
-        eval "$ECHOTHIS" gsettings set org.cinnamon.theme name 'nightfall'
+        gsettings set org.cinnamon.desktop.wm.preferences theme 'nightfall'
+        gsettings set org.cinnamon.desktop.interface gtk-theme 'Libra-Dark'
+        gsettings set org.cinnamon.theme name 'nightfall'
     else
-        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.wm.preferences theme "'Windows 10 Light'"
-        eval "$ECHOTHIS" gsettings set org.cinnamon.desktop.interface gtk-theme "'Windows 10 Light'"
-        eval "$ECHOTHIS" gsettings set org.cinnamon.theme name "'Elementary Luna Mod'"
+        gsettings set org.cinnamon.desktop.wm.preferences theme "Windows 10 Light"
+        gsettings set org.cinnamon.desktop.interface gtk-theme "Windows 10 Light"
+        gsettings set org.cinnamon.theme name "Elementary Luna Mod"
     fi
 }
 
