@@ -77,15 +77,15 @@ function set_eclipse() {
 
 function set_android_studio() {
     file=~/.AndroidStudio2.1/config/options/colors.scheme.xml
-    light="    <global_color_scheme name=\"Yoland\" />"
-    dark="    <global_color_scheme name=\"Black Yoland\" />"
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
     switcheroo
 }
 
 function set_idea_ce() {
     file=~/.IdeaIC2016.2/config/options/colors.scheme.xml
-    light="    <global_color_scheme name=\"Yoland\" />"
-    dark="    <global_color_scheme name=\"Black Yoland\" />"
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
     switcheroo
 }
 
@@ -122,4 +122,6 @@ set_vim
 set_terminator
 set_background
 set_unity_theme
-
+set_android_studio
+set_idea_ce
+set_eclipse
