@@ -21,7 +21,7 @@ fi
 alias wa="wunderline add"
 
 # Wrapper for jrnl
-alias jrnl="~/bin/yo-jrnl"
+alias jrnl="~/personal_bin/yo-jrnl"
 
 # Load git-prompt.sh
 source ~/.git-prompt.sh
