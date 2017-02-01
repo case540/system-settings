@@ -1,6 +1,5 @@
 [global_config]
   always_split_with_profile = True
-  borderless = True
   handle_size = 5
   homogeneous_tabbar = False
   scroll_tabbar = True
@@ -13,7 +12,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = default
+      profile = tne
       type = Terminal
     [[[window0]]]
       parent = ""
