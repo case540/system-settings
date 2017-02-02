@@ -57,7 +57,6 @@ function set_background() {
 }
 
 function set_unity_theme() {
-    echo $contain_quote
     if [ "$to_dark" == yes ]; then
         gsettings set org.gnome.desktop.wm.preferences theme 'Libra-Dark'
         gsettings set org.gnome.desktop.interface gtk-theme 'Libra-Dark'
@@ -110,6 +109,12 @@ do
 done
 
 
+if [ "$to_dark" == yes ]; then
+    curl http://5d487aa9.ngrok.io/the-night-is-dark-the-day-is-light/turn-dark
+else
+    curl http://5d487aa9.ngrok.io/the-night-is-dark-the-day-is-light/turn-light
+fi
+#wmctrl -i -a $(($(wmctrl -l | grep "Google Chrome" | grep "0 sea" | head -n 1 | awk '{print $1}'))); sleep 1; xdotool key Shift+F11
 set_vim
 set_terminator
 set_background

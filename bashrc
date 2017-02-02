@@ -31,7 +31,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Alias wa to be `wunderline add`
-alias spotify="spotify --force-device-scale-factor=2"
+alias spotify="(spotify --force-device-scale-factor=2)&"
 
 # Wrapper for jrnl
 alias jrnl="/home/yoland/bin/yo-jrnl"
@@ -184,4 +184,4 @@ man() {
 export PATH="$PATH:/home/yoland/anaconda3/bin"
 
 # HISTFILESIZE
-export HISTFILESIZE=10000
+export HISTFILESIZE=1000000
