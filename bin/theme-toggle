@@ -87,7 +87,7 @@ function set_android_studio() {
 }
 
 function set_idea_ce() {
-    file=~/.IdeaIC2016.2/config/options/colors.scheme.xml
+    file=~/.IdeaIC2016.3/config/options/colors.scheme.xml
     light='    <global_color_scheme name="Yoland" \/>'
     dark='    <global_color_scheme name="Black Yoland" \/>'
     switcheroo
@@ -127,7 +127,6 @@ if [ "$to_dark" == yes ]; then
 else
     curl http://5d487aa9.ngrok.io/the-night-is-dark-the-day-is-light/turn-light
 fi
-#wmctrl -i -a $(($(wmctrl -l | grep "Google Chrome" | grep "0 sea" | head -n 1 | awk '{print $1}'))); sleep 1; xdotool key Shift+F11
 set_vim
 set_terminator
 set_background
