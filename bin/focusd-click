@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while [ 1 ]; do 
+	lock
+	wmctrl -s 0
+	xdotool mousemove 73 426 click 1
+	sleep 1
+	xdotool key 'Ctrl+R'
+	sleep 10
+	xdotool mousemove 240 477 click 1
+	unlock
+	sleep 600
+done

@@ -1,0 +1,11 @@
+#!/bin/bash
+function multi_click() {
+    height=187
+    while [[ $height < 359 ]]
+    do
+        xdotool mousemove --sync 599 $height click 1; sleep 1;
+        height=$((height+30))
+    done
+}
+
+multi_click

@@ -1,0 +1,20 @@
+#!/bin/bash
+function click_to_light() {
+    echo "light mode";
+    wmctrl -s 1;
+    xdotool mousemove --sync 442 35 click 1; sleep 1; #window
+    xdotool mousemove --sync 33 115 click 1; sleep 1; #bookmark
+    xdotool mousemove --sync 84 142 click 1; sleep 5; #empty white
+    multi-click
+    xdotool mousemove --sync 33 115 click 1; sleep 1; #bookmark
+    xdotool mousemove --sync 84 238 click 1; sleep 5; #empty black
+    multi-click
+
+    wmctrl -s 2;
+    xdotool mousemove --sync 442 35 click 1; sleep 1; #window 
+    xdotool mousemove --sync 22 99 click 1; sleep 1; #bookmark
+    xdotool mousemove --sync 72 192 click 1; sleep 5; #light theme
+    xdotool mousemove --sync 447 569 click 1; #enable light theme
+}
+
+click_to_light
