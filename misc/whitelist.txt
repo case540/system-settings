@@ -9,11 +9,11 @@ Remove *depot
 Remove *dev
 Remove *distiller
 Remove *google3
+Remove *hack
 Remove *hangout
 Remove *java
 Remove *linux
 Remove *machine
-Remove *ml
 Remove *programmer
 Remove *programming
 Remove *python
@@ -50,6 +50,7 @@ Remove crbug.com
 Remove creditkarma.com
 Remove cs/
 Remove curiousconcept.com
+Remove dabeaz.com
 Remove devblogs.nvidia.com
 Remove developers.facebook.com
 Remove downloads
@@ -63,6 +64,7 @@ Remove flask-sqlalchemy.pocoo.org
 Remove git-scm.com
 Remove github.com
 Remove github.io
+Remove githubusercontent.com
 Remove go/
 Remove google.com
 Remove google3/
@@ -92,13 +94,16 @@ Remove mint.com
 Remove moma/
 Remove mozilla.org
 Remove myworkday.com
+Remove nckgahadagoaajjgafhacjanaoiihapd
 Remove net-internals/
 Remove newtab
+Remove ngrok.io
 Remove nyu.edu
 Remove openweathermap.org
 Remove oracle.com
 Remove pandora.com
 Remove perkhub.com
+Remove pubnub.com
 Remove pushbullet.com
 Remove pylint.org
 Remove python-guide.org
@@ -106,7 +111,9 @@ Remove python.org
 Remove readthedocs.io
 Remove rescuetime.com
 Remove semicomplete.com
+Remove serverfault.com
 Remove slack.com
+Remove sourceforge.net
 Remove sqlalchemy.org
 Remove stackexchange.com
 Remove stackoverflow.com
