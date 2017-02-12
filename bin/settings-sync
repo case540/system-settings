@@ -37,7 +37,7 @@ function sync() {
         OTHER_OPTION+=("-n")
     fi
     arr_length=${#RSYNC_SRC[@]}
-    for (( i=1; i<$arr_length; i++ ));
+    for (( i=0; i<$arr_length; i++ ));
     do
         if [ "$to_reverse" == yes ]; then
             eval "$ECHOTHIS" rsync "${RSYNC_OPTION[$i]}" "${OTHER_OPTION[@]}" "${RSYNC_DST_PREFIX}${RSYNC_DST[$i]}" "${RSYNC_SRC[$i]}";
