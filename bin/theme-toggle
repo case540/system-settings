@@ -71,12 +71,20 @@ function set_android_studio() {
     light='    <global_color_scheme name="Yoland" \/>'
     dark='    <global_color_scheme name="Black Yoland" \/>'
     switcheroo
+    file=~/.AndroidStudio2.2/config/options/laf.xml
+    light='    <laf class-name="com.intellij.ide.ui.laf.IntelliJLaf" \/>'
+    dark='   <laf class-name="com.intellij.ide.ui.laf.darcula.DarculaLaf" \/>'
+    switcheroo
 }
 
 function set_idea_ce() {
     file=~/.IdeaIC2016.3/config/options/colors.scheme.xml
     light='    <global_color_scheme name="Yoland" \/>'
     dark='    <global_color_scheme name="Black Yoland" \/>'
+    switcheroo
+    file=~/.IdeaIC2016.3/config/options/laf.xml
+    light='    <laf class-name="com.intellij.ide.ui.laf.IntelliJLaf" \/>'
+    dark='   <laf class-name="com.intellij.ide.ui.laf.darcula.DarculaLaf" \/>'
     switcheroo
 }
 
