@@ -13,7 +13,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = tne
+      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
@@ -42,7 +42,7 @@
   [[default]]
     background_color = "#fdf6e3"
     background_image = None
-    font = Hack 12
+    font = Hack 10
     foreground_color = "#657b83"
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     scrollback_infinite = True
@@ -53,7 +53,7 @@
     background_image = None
     cursor_blink = False
     cursor_color = "#c6c6c6"
-    font = Hack 12
+    font = Hack 10
     foreground_color = "#cccccc"
     palette = "#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff:#a3a3a3:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff"
     show_titlebar = False
@@ -64,7 +64,7 @@
     background_image = None
     background_type = transparent
     cursor_color = "#e9e4e4"
-    font = Hack 12
+    font = Hack 10
     foreground_color = "#effdfe"
     palette = "#7f8181:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#7a7a7a:#f99971:#c5d2d7:#d4e2e7:#cae0e3:#6c71c4:#d2dede:#fdf6e3"
     show_titlebar = False
