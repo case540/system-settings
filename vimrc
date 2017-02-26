@@ -69,9 +69,9 @@ filetype plugin indent on    " required
 "syntax and color theme
 syntax enable
 set t_Co=256
-colorscheme solarized
-set background=light
-let g:airline_theme='solarized'
+colorscheme Tomorrow-Night-Eighties
+set background=dark
+let g:airline_theme='base16_mocha'
 
 set ai
 set si
