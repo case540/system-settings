@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLOCKLIST=("m.wikipedia.org" "www.wikipedia.org" "wikipedia.org" "www.amazon.com" "m.amazon.com" "www.facebook.com" "m.facebook.com" "m.youtube.com" "www.youtube.com" "youtube.com")
+BLOCKLIST=("m.wikipedia.org" "www.wikipedia.org" "wikipedia.org" "www.amazon.com" "m.amazon.com" "www.facebook.com" "m.facebook.com" "m.youtube.com" "www.youtube.com" "youtube.com" "netflix.com" "www.netflix.com")
 BLOCK_BASE="0.0.0.0"
 ETC_FILE="/etc/hosts"
 DELAY_IN_SEC=300
