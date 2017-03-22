@@ -1,0 +1,136 @@
+#!/bin/bash
+
+function switcheroo() {
+    if [ -z "$light" ]; then
+        echo "Light config is unset"
+        exit
+    fi 
+    if [ -z "$dark" ]; then
+        echo "Dark config is unset"
+        exit
+    fi 
+    if [ -z $file ]; then
+        echo "File is unset"
+        exit
+    fi 
+    if [ "$to_dark" == yes ]; then
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${light}$/${dark}/g\"" $file
+        else
+            sed -i "s/^${light}$/${dark}/g" $file
+        fi
+    else
+        if [ -n "$ECHOTHIS" ]; then
+            echo sed -i "\"s/^${dark}$/${light}/g\"" $file
+        else
+            sed -i "s/^${dark}$/${light}/g" $file
+        fi
+    fi
+}
+
+function set_vim() {
+    file=~/.vimrc
+    light="colorscheme solarized"
+    dark="colorscheme Tomorrow-Night-Eighties"
+    switcheroo
+    light="let g:airline_theme='solarized'"
+    dark="let g:airline_theme='base16_mocha'"
+    switcheroo
+    light="set background=light"
+    dark="set background=dark"
+    switcheroo
+}
+
+function set_terminator() {
+    file=~/.config/terminator/config
+    light="      profile = default"
+    dark="      profile = tne"
+    switcheroo
+}
+
+function set_background() {
+    if [ "$to_dark" == yes ]; then
+        gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/dark-pattern.png'
+    else
+        gsettings set org.gnome.desktop.background picture-uri 'file:///usr/local/google/home/yolandyan/Pictures/Wallpapers/light-pattern.png'
+    fi
+}
+
+function set_unity_theme() {
+    if [ "$to_dark" == yes ]; then
+        gsettings set org.cinnamon.desktop.wm.preferences theme 'nightfall'
+        gsettings set org.cinnamon.desktop.interface gtk-theme 'Libra-Dark'
+        gsettings set org.cinnamon.theme name 'nightfall'
+    else
+        gsettings set org.cinnamon.desktop.wm.preferences theme "Windows 10 Light"
+        gsettings set org.cinnamon.desktop.interface gtk-theme "Windows 10 Light"
+        gsettings set org.cinnamon.theme name "Elementary Luna Mod"
+    fi
+}
+
+function set_eclipse() {
+    file=~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.e4.ui.css.swt.theme.prefs
+    light="themeid=org.eclipse.e4.ui.css.theme.e4_default"
+    dark="themeid=org.eclipse.e4.ui.css.theme.e4_dark"
+    switcheroo
+}
+
+function set_android_studio() {
+    file=~/.AndroidStudio2.1/config/options/colors.scheme.xml
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
+    switcheroo
+    file=~/.AndroidStudio2.1/config/options/laf.xml
+    light='    <laf class-name="com.intellij.ide.ui.laf.IntelliJLaf" \/>'
+    dark='   <laf class-name="com.intellij.ide.ui.laf.darcula.DarculaLaf" \/>'
+    switcheroo
+}
+
+function set_idea_ce() {
+    file=~/.IdeaIC2016.3/config/options/colors.scheme.xml
+    light='    <global_color_scheme name="Yoland" \/>'
+    dark='    <global_color_scheme name="Black Yoland" \/>'
+    switcheroo
+}
+
+
+while [[ $# > 0 ]]
+do
+    key="$1"
+    case $key in
+        -d|--reverse)
+            to_dark=yes
+            shift
+            ;;
+        -l|--light)
+            to_dark=no;
+            shift
+            ;;
+        -e|--echo)
+            ECHOTHIS="echo";
+            shift
+            ;;
+        -q|--quite)
+            quite=yes
+            shift
+            ;;
+        *)
+            echo "Unrecognized option $key" 1>&2
+            exit
+            ;;
+    esac
+done
+
+
+if [ "$to_dark" == yes ]; then
+    curl http://e0f03393.ngrok.io/the-night-is-dark-the-day-is-light/turn-dark
+else
+    curl http://e0f03393.ngrok.io/the-night-is-dark-the-day-is-light/turn-light
+fi
+set_vim
+set_terminator
+set_background
+set_unity_theme
+set_android_studio
+set_idea_ce
+set_eclipse
