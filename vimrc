@@ -69,9 +69,9 @@ filetype plugin indent on    " required
 "syntax and color theme
 syntax enable
 set t_Co=256
-colorscheme Tomorrow-Night-Eighties
-set background=dark
-let g:airline_theme='base16_mocha'
+colorscheme solarized
+set background=light
+let g:airline_theme='solarized'
 
 set ai
 set si
@@ -222,4 +222,13 @@ set wildignore+=*/.git/*,*/.idea/*,*/.DS_Store,*/system-settings/bin/*
 " let g:airline_theme='base16_mocha'
 " set background=dark
 
+let g:yyz = 0
+fu! Decr() 
+  let g:yyz = g:yyz - 1
+  return g:yyz
+endfu
 
+fu! Incr() 
+  let g:yyz = g:yyz + 1
+  return g:yyz
+endfu
