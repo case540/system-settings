@@ -1,2 +1,2 @@
 #!/bin/bash
-$(google-chrome --enable-dom-distiller) &
+(google-chrome --enable-dom-distiller) &
