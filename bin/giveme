@@ -24,7 +24,7 @@ function give_me()
         kill -9 $2
         if [[ "$?" == 0 ]]
         then
-            let seconds=$(($1))
+            let seconds=$(($1 * 60))
             (sleep $seconds && sudo -H -u yoland google-chrome chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/options.html &> /dev/null)&
             sudo chattr -i ~/.config/giveme/spent.log
             sudo chmod 740 ~/.config/giveme/spent.log
