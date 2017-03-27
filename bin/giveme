@@ -22,14 +22,22 @@ function give_me()
         exit 1
     else
         kill -9 $2
-        let seconds=$(($1 * 60))
-        (sleep $seconds && google-chrome chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/options.html) &
-        sudo chattr -i ~/.config/giveme/spent.log
-        sudo chmod 740 ~/.config/giveme/spent.log
-        sudo echo 0 > ~/.config/giveme/spent.log
-        sudo chmod 400 ~/.config/giveme/spent.log
-        sudo chattr +i ~/.config/giveme/spent.log
+        if [[ "$?" == 0 ]]
+        then
+            let seconds=$(($1))
+            (sleep $seconds && sudo -H -u yoland google-chrome chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/options.html &> /dev/null)&
+            sudo chattr -i ~/.config/giveme/spent.log
+            sudo chmod 740 ~/.config/giveme/spent.log
+            sudo echo $ASKING > ~/.config/giveme/spent.log
+            sudo chmod 440 ~/.config/giveme/spent.log
+            sudo chattr +i ~/.config/giveme/spent.log
+        fi
     fi
 }
 
-give_me $1 $2
+if [[ "$1" == "-t" ]]
+then
+    cat ~/.config/giveme/spent.log
+else
+    give_me $1 $2
+fi
