@@ -13,7 +13,17 @@ function quota()
 
 function give_me()
 {
-    let SPENT=$(head -n 1 ~/.config/giveme/spent.log)
+    let DATE=$(head -n 1 ~/.config/giveme/spent.log)
+    if [[ $(date +%y%m%d) > $DATE ]]
+    then
+        sudo chattr -i ~/.config/giveme/spent.log
+        sudo chmod 740 ~/.config/giveme/spent.log
+        sudo echo $(date +%y%m%d) > ~/.config/giveme/spent.log
+        sudo echo 0 >> ~/.config/giveme/spent.log
+        sudo chmod 440 ~/.config/giveme/spent.log
+        sudo chattr +i ~/.config/giveme/spent.log
+    fi
+    let SPENT=$(tail -n 1 ~/.config/giveme/spent.log)
     let ASKING=$(($SPENT + $1))
     quota
     if [[ $ASKING -gt $QUOTA ]]
@@ -21,14 +31,15 @@ function give_me()
         echo "Rejected, you have already spent $SPENT minutes"
         exit 1
     else
-        kill -9 $2
+        sudo kill -9 $2
         if [[ "$?" == 0 ]]
         then
             let seconds=$(($1 * 60))
             (sleep $seconds && sudo -H -u yoland google-chrome chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/options.html &> /dev/null)&
             sudo chattr -i ~/.config/giveme/spent.log
             sudo chmod 740 ~/.config/giveme/spent.log
-            sudo echo $ASKING > ~/.config/giveme/spent.log
+            sudo echo $(date +%y%m%d) > ~/.config/giveme/spent.log
+            sudo echo $ASKING >> ~/.config/giveme/spent.log
             sudo chmod 440 ~/.config/giveme/spent.log
             sudo chattr +i ~/.config/giveme/spent.log
         fi
