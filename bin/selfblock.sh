@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLOCKLIST=("m.wikipedia.org" "www.wikipedia.org" "wikipedia.org" "www.facebook.com" "m.facebook.com" "netflix.com" "www.netflix.com" "hulu.com" "www.hulu.com")
+BLOCKLIST=("m.wikipedia.org" "www.wikipedia.org" "wikipedia.org" "www.facebook.com" "m.facebook.com" "netflix.com" "www.netflix.com" "hulu.com" "www.hulu.com" "youtube.com" "m.youtube.com" "www.youtube.com")
 BLOCK_BASE="0.0.0.0"
 ETC_FILE="/etc/hosts"
 DELAY_IN_SEC=300
@@ -17,7 +17,7 @@ function resume_block()
                 echo "$i is already there"
             fi
         else
-            sudo echo "$ITEM" >> $ETC_FILE && PUNISH="yes" && if [ "$QUITE" != "yes" ]; then echo "Added $i"; fi
+            sudo echo "$ITEM" >> $ETC_FILE && PUNISH="no" && if [ "$QUITE" != "yes" ]; then echo "Added $i"; fi
         fi
         if [ "$PUNISH" != "no" ]; then
             killall chrome &
