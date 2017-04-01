@@ -48,13 +48,19 @@ function give_me()
 
 function unlock_youtube()
 {
-    sudo chattr -i "/etc/hosts"
-    sudo sed -i.bak "/^0.0.0.0 youtube.com$/d" "/etc/hosts";
-    sudo sed -i.bak "/^0.0.0.0 www.youtube.com$/d" "/etc/hosts";
-    (/usr/bin/youtube-dl --output "~/Downloads/%(title)s.%(ext)s" "$1" &> /dev/null)&
-    sudo chattr -i "/etc/hosts"
-    sudo echo "0.0.0.0 youtube.com" >> "/etc/hosts"
-    sudo echo "0.0.0.0 www.youtube.com" >> "/etc/hosts"
+    if [[ $(whoami) != "root" ]]
+    then
+        echo "Error, must use root" 1>&2
+        exit 1
+    else
+        chattr -i "/etc/hosts"
+        sed -i.bak "/^0.0.0.0 youtube.com$/d" "/etc/hosts";
+        sed -i.bak "/^0.0.0.0 www.youtube.com$/d" "/etc/hosts";
+        (/bin/youtube-dl --output "~/Downloads/%(title)s.%(ext)s" "$1" &> /dev/null)&
+        chattr -i "/etc/hosts"
+        echo "0.0.0.0 youtube.com" >> "/etc/hosts"
+        echo "0.0.0.0 www.youtube.com" >> "/etc/hosts"
+    fi
 }
 
 if [[ "$1" == "-t" ]]
