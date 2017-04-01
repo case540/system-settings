@@ -46,9 +46,22 @@ function give_me()
     fi
 }
 
+function unlock_youtube()
+{
+    sudo chattr -i "/etc/hosts"
+    sudo sed -i.bak "/^0.0.0.0 youtube.com$/d" "/etc/hosts";
+    sudo sed -i.bak "/^0.0.0.0 www.youtube.com$/d" "/etc/hosts";
+    (/usr/bin/youtube-dl --output "~/Downloads/%(title)s.%(ext)s" "$1" &> /dev/null)&
+    sudo chattr -i "/etc/hosts"
+    sudo echo "0.0.0.0 youtube.com" >> "/etc/hosts"
+    sudo echo "0.0.0.0 www.youtube.com" >> "/etc/hosts"
+}
+
 if [[ "$1" == "-t" ]]
 then
     cat ~/.config/giveme/spent.log
+elif [[ "$1" == "-u" ]]; then
+    unlock_youtube "$2"
 else
     give_me $1 $2
 fi
