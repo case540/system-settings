@@ -56,10 +56,12 @@ function unlock_youtube()
         chattr -i "/etc/hosts"
         sed -i.bak "/^0.0.0.0 youtube.com$/d" "/etc/hosts";
         sed -i.bak "/^0.0.0.0 www.youtube.com$/d" "/etc/hosts";
-        (/bin/youtube-dl --output "~/Downloads/%(title)s.%(ext)s" "$1" &> /dev/null)&
-        chattr -i "/etc/hosts"
+        sleep 3
+        (/usr/bin/youtube-dl --output "~/Downloads/%(title)s.%(ext)s" "$1" )&
+        sleep 1
         echo "0.0.0.0 youtube.com" >> "/etc/hosts"
         echo "0.0.0.0 www.youtube.com" >> "/etc/hosts"
+        chattr +i "/etc/hosts"
     fi
 }
 
