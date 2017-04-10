@@ -123,10 +123,11 @@ done
 
 
 if [ "$to_dark" == yes ]; then
-    curl http://e0f03393.ngrok.io/the-night-is-dark-the-day-is-light/turn-dark
+    curl http://016ca2f2.ngrok.io/the-night-is-dark-the-day-is-light/turn-dark
 else
-    curl http://e0f03393.ngrok.io/the-night-is-dark-the-day-is-light/turn-light
+    curl http://016ca2f2.ngrok.io/the-night-is-dark-the-day-is-light/turn-light
 fi
+
 set_vim
 set_terminator
 set_background
