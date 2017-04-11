@@ -170,9 +170,6 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'ij'
 
-" ctrlp user command
-let g:ctrlp_user_command = 'fgrep %s .indexed-files'
-
 " ctrlp show hidden file:
 let g:ctrlp_show_hidden = 0
 
