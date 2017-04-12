@@ -1,0 +1,72 @@
+#!/bin/bash
+
+function quota()
+{
+    day=$(date | cut -f1 -d ' ')
+    if [[ ( $day == "Sun" ) || ( $day == "Sat" ) ]]
+    then
+        QUOTA=120
+    else
+        QUOTA=30
+    fi
+}
+
+function give_me()
+{
+    let DATE=$(head -n 1 /usr/local/google/home/yolandyan/.config/giveme/spent.log)
+    if [[ $(date +%y%m%d) > $DATE ]]
+    then
+        sudo chattr -i /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        sudo chmod 740 /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        sudo echo $(date +%y%m%d) > /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        sudo echo 0 >> /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        sudo chmod 440 /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        sudo chattr +i /usr/local/google/home/yolandyan/.config/giveme/spent.log
+    fi
+    let SPENT=$(tail -n 1 /usr/local/google/home/yolandyan/.config/giveme/spent.log)
+    let ASKING=$(($SPENT + $1))
+    quota
+    if [[ $ASKING -gt $QUOTA ]]
+    then
+        echo "Rejected, you have already spent $SPENT minutes"
+        exit 1
+    else
+        sudo kill -9 $2
+        if [[ "$?" == 0 ]]
+        then
+            let seconds=$(($1 * 60))
+            (sleep $seconds && sudo -H -u yoland google-chrome chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/options.html &> /dev/null)&
+            sudo chattr -i /usr/local/google/home/yolandyan/.config/giveme/spent.log
+            sudo chmod 740 /usr/local/google/home/yolandyan/.config/giveme/spent.log
+            sudo echo $(date +%y%m%d) > /usr/local/google/home/yolandyan/.config/giveme/spent.log
+            sudo echo $ASKING >> /usr/local/google/home/yolandyan/.config/giveme/spent.log
+            sudo chmod 440 /usr/local/google/home/yolandyan/.config/giveme/spent.log
+            sudo chattr +i /usr/local/google/home/yolandyan/.config/giveme/spent.log
+        fi
+    fi
+}
+
+function unlock_youtube()
+{
+    if [[ $(whoami) != "root" ]]
+    then
+        echo "Error, must use root" 1>&2
+        exit 1
+    else
+        chattr -i "/etc/hosts"
+        sed -i.bak "/^127.0.0.1 youtube.com$/d" "/etc/hosts";
+        sed -i.bak "/^127.0.0.1 www.youtube.com$/d" "/etc/hosts";
+        sleep 3
+        (sudo -u yolandyan /usr/local/google/home/yolandyan/bin/youtube-dl --output "/usr/local/google/home/yolandyan/Downloads/%(title)s.%(ext)s" "$1" )&
+        (sleep 10; echo "127.0.0.1 youtube.com" >> "/etc/hosts"; echo "127.0.0.1 www.youtube.com" >> "/etc/hosts"; chattr +i "/etc/hosts")& 
+    fi
+}
+
+if [[ "$1" == "-t" ]]
+then
+    cat /usr/local/google/home/yolandyan/.config/giveme/spent.log
+elif [[ "$1" == "-u" ]]; then
+    unlock_youtube "$2"
+else
+    give_me $1 $2
+fi
