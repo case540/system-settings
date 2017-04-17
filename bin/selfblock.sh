@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLOCKLIST=("eu.lolsports.com" "www.lolsports.com" "na.lolsports.com" "lolsports.com" "m.twitter.com" "techcrunch.com" "www.techcrunch.com" "theverge.com" "www.theverge.com" "www.twitter.com" "twitter.com" "twitch.tv" "www.twitch.tv" "www.facebook.com" "m.facebook.com" "m.reddit.com" "reddit.com" "www.reddit.com" "m.youtube.com" "www.youtube.com" "youtube.com" "linkedin.com" "www.linkedin.com")
+BLOCKLIST=("eu.lolsports.com" "www.lolsports.com" "na.lolsports.com" "lolsports.com" "m.twitter.com" "techcrunch.com" "www.techcrunch.com" "theverge.com" "www.theverge.com" "www.twitter.com" "twitter.com" "twitch.tv" "www.twitch.tv" "www.facebook.com" "m.facebook.com" "m.reddit.com" "reddit.com" "www.reddit.com" "m.youtube.com" "www.youtube.com" "youtube.com" "linkedin.com" "www.linkedin.com" "dmzj.com" "www.dmzj.com" "xingzhanfengbao.net" "www.xingzhanfengbao.net")
 BLOCK_BASE="127.0.0.1"
 ETC_FILE="/etc/hosts"
 DELAY_IN_SEC=300
