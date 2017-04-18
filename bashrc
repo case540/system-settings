@@ -13,6 +13,9 @@ alias gg="git checkout"
 
 export PROMPT_COMMAND="history -a; history -n"
 
+#Default editor
+export EDITOR="/usr/bin/vi"
+
 # Set up bash completion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       . /etc/bash_completion
