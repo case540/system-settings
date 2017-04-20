@@ -15,7 +15,9 @@ function resume_block()
                 echo "$i is already there"
             fi
         else 
+            sudo chattr -i /etc/hosts
             sudo echo "$ITEM" >> $ETC_FILE && if [ "$QUITE" != "yes" ]; then echo "Added $i"; fi
+            sudo chattr +i /etc/hosts
         fi
     done
 }
