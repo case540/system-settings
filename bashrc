@@ -10,6 +10,7 @@ alias gitlp="git log -p"
 alias gitback="git checkout -"
 alias gitgo="git checkout"
 alias gg="git checkout"
+alias gmaster="git checkout origin/master --"
 
 export PROMPT_COMMAND="history -a; history -n"
 
