@@ -30,9 +30,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       . /etc/bash_completion
 fi
 
-# Alias wa to be `wunderline add`
-alias spotify="(spotify --force-device-scale-factor=2)&"
-
 # Wrapper for jrnl
 alias jrnl="/home/yoland/bin/yo-jrnl"
 
