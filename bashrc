@@ -184,4 +184,5 @@ man() {
 export PATH="$PATH:/home/yoland/anaconda3/bin"
 
 # HISTFILESIZE
+export HISTSIZE=99999999999999
 export HISTFILESIZE=1000000
