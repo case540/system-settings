@@ -156,7 +156,6 @@ set foldlevel=1         "this is just what i use
 " Vim 80 character warning
 " highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 " match OverLength /\%81v.\+/
-set cc=80
 
 " ctrlp can't find file adhoc fix
 let g:ctrlp_working_path_mode = 'c'
@@ -198,7 +197,7 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=2 sts=2 sw=2 cc=80
 autocmd Filetype java setlocal cc=100
 autocmd Filetype jinja setlocal ts=2 sts=2 sw=2
-autocmd Filetype text setlocal ts=2 sts=2 sw=2 cc=80
+autocmd Filetype text setlocal ts=2 sts=2 sw=2 cc=0
 
 " Add argument (can be negative, default 1) to global variable i.
 " Return value of i before the change.
