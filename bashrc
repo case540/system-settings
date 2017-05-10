@@ -6,9 +6,6 @@ export PATH=$PATH:/home/yoland/bin
 export PATH=$PATH:/home/yoland/Android/Sdk/tools
 export PATH=$PATH:/home/yoland/Android/Sdk/platform-tools
 
-# Add google_appengine dir to PATH
-export PATH=$PATH:/home/yoland/bin/google_appengine/
-
 export EDITOR="vim"
 
 # Random shit
@@ -183,3 +180,9 @@ export PATH="$PATH:/home/yoland/anaconda3/bin"
 # HISTFILESIZE
 export HISTSIZE=99999999999999
 export HISTFILESIZE=1000000
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/yoland/sdk/google-cloud-sdk/path.bash.inc' ]; then source '/home/yoland/sdk/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/yoland/sdk/google-cloud-sdk/completion.bash.inc' ]; then source '/home/yoland/sdk/google-cloud-sdk/completion.bash.inc'; fi
