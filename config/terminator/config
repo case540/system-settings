@@ -1,5 +1,6 @@
 [global_config]
   always_split_with_profile = True
+  borderless = True
   enabled_plugins = CustomCommandsMenu, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   handle_size = 0
   homogeneous_tabbar = False
