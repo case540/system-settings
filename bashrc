@@ -27,9 +27,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       . /etc/bash_completion
 fi
 
-# Wrapper for jrnl
-alias jrnl="/home/yoland/bin/yo-jrnl"
-
 # Load git-prompt.sh
 source /home/yoland/.bash-git-prompt/gitprompt.sh
 
