@@ -231,3 +231,7 @@ fu! Incr()
   let g:yyz = g:yyz + 1
   return g:yyz
 endfu
+
+" Set vimwiki syntax to be markdown
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                       \ 'syntax': 'markdown', 'ext': '.md'}]
