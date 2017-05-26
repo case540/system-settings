@@ -26,6 +26,5 @@ function check_and_wait() {
 }
 
 check_and_wait && go_and_pull &
-/usr/local/bin/jrnl "$@"
 check_and_wait && go_and_update &
 
