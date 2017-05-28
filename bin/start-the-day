@@ -1,0 +1,6 @@
+curl -X POST \
+  https://www.toggl.com/api/v8/time_entries/start \
+  -H 'authorization: Basic ZjY4MGE2OTA1Y2MyMmMxNTlkZGNkNTM0ZWUwZmIzNmU6YXBpX3Rva2Vu' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{"time_entry":{"description":"Woke up/in bed","tags":[],"pid":7678942,"created_with":"curl"}}'
