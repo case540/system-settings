@@ -12,7 +12,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = tne
+      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
