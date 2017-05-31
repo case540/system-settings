@@ -1,2 +1,2 @@
 #!/bin/bash
-python ~/bin/unique_id.py
+python ~/personal_bin/unique_id.py
