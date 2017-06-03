@@ -32,6 +32,7 @@ Plugin 'einars/js-beautify'
 Plugin 'Glench/Vim-Jinja2-Syntax' " jinja2 syntax support
 Plugin 'vim-scripts/LanguageTool'
 Plugin 'lfv89/vim-interestingwords' " highlight multiple words at the same time
+Plugin 'isRuslan/vim-es6' 
 
 Plugin 'taglist.vim'
 Plugin 'vimwiki'
