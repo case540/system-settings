@@ -4,11 +4,11 @@ BRANCH_NAME="ubuntu-laptop"
 
 RSYNC_DST_PREFIX="~/Documents/system-settings/"
 RSYNC_SRC=("~/.vim/"  "~/.config/terminator/config" "~/bin/" "~/.vimrc" \
-    "~/.bashrc" "~/vimwiki/" "/etc/inputrc")
+    "~/.bashrc" "/etc/inputrc")
 RSYNC_DST=("vim/"     "config/terminator/config"    "bin/"   "vimrc" \
-    "bashrc"    "vimwiki"    "misc/inputrc")
-RSYNC_OPTION=("-r" ""                          "-r"  "" \
-    ""        "-r"      "")
+    "bashrc"    "misc/inputrc")
+RSYNC_OPTION=("-r"    ""                            "-r"     "" \
+    ""          "")
 
 function go_and_update() {
     cd ~/Documents/system-settings &&
