@@ -27,6 +27,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       . /etc/bash_completion
 fi
 
+# Set up JRNL
+alias jrnl="locked-jrnl"
+
 # Load git-prompt.sh
 source /home/yoland/.bash-git-prompt/gitprompt.sh
 
