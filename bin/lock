@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+    echo "Lock file name not provided" >&2
+    exit 1
+fi
+
+lockfile="${HOME}/.lock/$1.lock"
+
+if [ -e "$lockfile" ]
+then
+  inotifywait -e delete "$lockfile"
+fi
+echo "locked" > "$lockfile"
