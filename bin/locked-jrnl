@@ -1,0 +1,5 @@
+#!/bin/bash
+
+yo-lock jrnl
+/usr/local/bin/jrnl "$@"
+yo-unlock jrnl
