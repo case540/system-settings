@@ -18,6 +18,12 @@ function go_and_update() {
         git push -q -u origin "$BRANCH_NAME" > /dev/null
 }
 
+function go_and_checkout() {
+    cd ~/Documents/system-settings &&
+        git checkout . &&
+        rm -r bin/
+}
+
 function sync() {
     if [ "$to_echo" == yes ]; then
         ECHOTHIS="echo"
@@ -37,6 +43,7 @@ function sync() {
         OTHER_OPTION+=("-n")
     fi
     arr_length=${#RSYNC_SRC[@]}
+    go_and_checkout
     for (( i=1; i<$arr_length; i++ ));
     do
         if [ "$to_reverse" == yes ]; then
