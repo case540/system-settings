@@ -15,7 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/buftabs' "tabs on the bottom
 Plugin 'henrik/vim-indexed-search' "show which result it is
-Plugin 'kien/ctrlp.vim' "open file with <c-p>
+Plugin 'ctrlpvim/ctrlp.vim' "open file with <c-p>
 Plugin 'Valloric/YouCompleteMe' " auto complete
 Plugin 'scrooloose/nerdcommenter' " <leader>cc to comment
 Plugin 'scrooloose/nerdtree' "<c-n> to open the directory
@@ -69,9 +69,9 @@ filetype plugin indent on    " required
 "syntax and color theme
 syntax enable
 set t_Co=256
-colorscheme Tomorrow-Night-Eighties
-let g:airline_theme='base16_mocha'
-set background=dark
+colorscheme solarized
+let g:airline_theme='solarized'
+set background=light
 
 " indentation
 set ai
@@ -169,6 +169,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'ij'
+
+let g:ctrlp_max_files = 100
+let g:ctrlp_max_depth=10
 
 " ctrlp show hidden file:
 let g:ctrlp_show_hidden = 0
