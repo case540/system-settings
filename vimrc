@@ -218,6 +218,9 @@ let g:EclimCompletionMethod = 'omnifunc'
 " Language tool jar location
 let g:languagetool_jar='$HOME/bin/languagetool/languagetool-commandline.jar'
 
+let g:syntastic_python_checker_args='--ignore=E111'
+let g:syntastic_python_flake8_args='--ignore=E111,E129,E501'
+
 "Set js and html tat to 2 char
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
