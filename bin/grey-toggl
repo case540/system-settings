@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" == "-l" ]
+then
+    gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ \
+        active-plugins "$(dconf dump /org/compiz/profiles/unity/ | \
+        grep active-plugins | cut -d= -f 2 | sed "s/, 'obs'//g")"
+else
+    gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ \
+        active-plugins "$(dconf dump /org/compiz/profiles/unity/ | \
+        grep active-plugins | cut -d= -f 2 | sed "s/]/, 'obs']/g")"
+fi
