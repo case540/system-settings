@@ -16,7 +16,7 @@
     foreground_color = "#657b83"
     icon_bell = False
     show_titlebar = False
-    font = Hack 12
+    font = Hack 11
     background_color = "#fdf6e3"
     cursor_blink = False
   [[darkdafult]]
@@ -32,7 +32,7 @@
     cursor_color = "#c6c6c6"
     foreground_color = "#cccccc"
     show_titlebar = False
-    font = Hack 12
+    font = Hack 11
     background_color = "#2d2d2d"
     cursor_blink = False
 [layouts]
