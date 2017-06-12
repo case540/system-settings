@@ -127,9 +127,6 @@ nnoremap <Leader>ed :AirlineToggleWhitespace<CR>
 " map <leader>sc to Syntastic check
 nnoremap <Leader>ec :SyntasticToggleMode<CR>
 
-" map <leader>ec to toggle Eclim disalbe/enable
-nnoremap <Leader>ee :call EclimToggle()<CR>
-
 " map <leader>bf to show buffers
 " map <leader>jkhl to change to windows
 nnoremap <Leader>h :bprev<CR>
@@ -161,8 +158,6 @@ set foldlevel=1         "this is just what i use
 " match OverLength /\%81v.\+/
 set cc=80
 
-autocmd VimEnter * call EclimSoftDisable()
-
 " ctrlp can't find file adhoc fix
 let g:ctrlp_working_path_mode = 'c'
 let g:ctrlp_map = '<c-p>'
@@ -180,23 +175,6 @@ let g:ctrlp_show_hidden = 0
 let g:syntastic_check_on_wq = 0
 let g:aireline#extensions#whitespace#enable = 0
 
-" set EclimJavaSearch result action:
-let g:EclimJavaSearchSingleResult = 'edit'
-
-" set airline bar to show whether Eclim is avaible
-let g:airline_section_b = '%{IsEclimOk()}'
-let g:airline_section_z = airline#section#create([':%3v'])
-let g:airline#extensions#eclim#enabled = 1
-let g:airline#extension#default#section_truncate_width = {
-    \ 'b': 80,
-    \ 'x': 100,
-    \ 'y': 100,
-    \ 'warning': 40,
-    \ 'error': 40,
-    \ }
-
-let g:airline#extensions#branch#format = 0
-
 autocmd FileType c,cpp,java,python,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " enable airline tab extension
@@ -211,9 +189,6 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" Let YCM work with Eclim
-let g:EclimCompletionMethod = 'omnifunc'
 
 " Language tool jar location
 let g:languagetool_jar='$HOME/bin/languagetool/languagetool-commandline.jar'
