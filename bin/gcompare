@@ -1,0 +1,43 @@
+#!/bin/bash
+
+BRANCH=origin/master;
+REPLACE=no
+DIFF=no
+
+[[ "${PWD}" != "$CLANKIUM" ]] && echo "Currently not clankium src" && exit
+while [[ $# > 0 ]]
+do
+    key="$1"
+    case $key in
+        -h|--help)
+            echo -e "-r|--replace: replace the file\n-b|--branch [BRANCH]:set branch"
+            echo -e "-d|--diff: show diff in diffmerge"
+            exit 0;
+            ;;
+        -r|--replace)
+            REPLACE=yes
+            shift
+            ;;
+        -b|--branch)
+            BRANCH="$2";
+            shift
+            shift
+            ;;
+        -d|--diff)
+            DIFF=yes
+            shift
+            ;;
+        *)
+            DST_NAME="$1"."${BRANCH//\//}"
+            if [ "$REPLACE" == "yes" ]; then
+                git show ${BRANCH}:"$1" > "$1"
+            else
+                git show ${BRANCH}:"$1" > "$DST_NAME"
+            fi
+            if [ "$DIFF" == "yes" ]; then
+                (diffmerge "$DST_NAME" "$1" &> /dev/null) &
+            fi
+            shift
+            ;;
+    esac
+done

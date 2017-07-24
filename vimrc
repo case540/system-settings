@@ -1,69 +1,32 @@
 " ===VUNDLE AND PLUGINS===
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Yoland's vim plugins
-Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/buftabs' "tabs on the bottom
-Plugin 'henrik/vim-indexed-search' "show which result it is
-Plugin 'ctrlpvim/ctrlp.vim' "open file with <c-p>
-Plugin 'Valloric/YouCompleteMe' " auto complete
-Plugin 'scrooloose/nerdcommenter' " <leader>cc to comment
-Plugin 'scrooloose/nerdtree' "<c-n> to open the directory
-Plugin 'scrooloose/syntastic' " check syntacs for languages
-Plugin 'vim-airline/vim-airline' " one line status bar on bottom
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fisadev/vim-isort'
-Plugin 'severin-lemaignan/vim-minimap' " minimap
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
-Plugin 'Glench/Vim-Jinja2-Syntax' " jinja2 syntax support
-Plugin 'vim-scripts/LanguageTool'
-Plugin 'lfv89/vim-interestingwords' " highlight multiple words at the same time
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/buftabs' "tabs on the bottom
+Plug 'henrik/vim-indexed-search' "show which result it is
+Plug 'ctrlpvim/ctrlp.vim' "open file with <c-l>
+Plug 'Valloric/YouCompleteMe' " auto complete
+Plug 'scrooloose/nerdcommenter' " <leader>cc to comment
+Plug 'scrooloose/nerdtree' "<c-n> to open the directory
+Plug 'scrooloose/syntastic' " check syntacs for languages
+Plug 'vim-airline/vim-airline' " one line status bar on bottom
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'fisadev/vim-isort'
+Plug 'severin-lemaignan/vim-minimap' " minimap
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'einars/js-beautify'
+Plug 'Glench/Vim-Jinja2-Syntax' " jinja2 syntax support
+Plug 'vim-scripts/LanguageTool'
+Plug 'lfv89/vim-interestingwords' " highlight multiple words at the same time
+Plug '~/.vim/bundle/taglist.vim'
+Plug '~/.vim/bundle/vimwiki'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-Plugin 'taglist.vim'
-Plugin 'vimwiki'
-"" The following are examples of different formats supported.
-"" Keep Plugin commands between vundle#begin/end.
-"" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-"" plugin from http://vim-scripts.org/vim/scripts.html
-"" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-"" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-"" The sparkup vim script is in a subdirectory of this repo called vim.
-"" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 " ===SETTINGS===
 "syntax and color theme
@@ -109,8 +72,8 @@ nnoremap <silent> <C-h> :set hlsearch!<CR>
 " copy current filename or path
 noremap <silent> <F4> :let @"=expand("%:p")<CR>
 " <c-[> open recent files
-nnoremap <C-l> :CtrlPMRU<CR>
-" <leader>pp open buffer
+nnoremap <C-S-a> :CtrlPMixed<CR>
+" " <leader>pp open buffer
 nnoremap <leader>bb :CtrlPBuffer<CR>
 " map <leader>f to find file in NERDTree
 nnoremap <Leader>f :NERDTreeFind<CR>
@@ -122,10 +85,16 @@ inoremap jj <Esc>
 cnoremap jj <Esc>
 onoremap jj <Esc>
 
+" map <c-p> to :FZF
+nnoremap <c-p> :FZF<CR>
+
 " map <leader>es to Airline whitespace toggle
 nnoremap <Leader>ed :AirlineToggleWhitespace<CR>
 " map <leader>sc to Syntastic check
 nnoremap <Leader>ec :SyntasticToggleMode<CR>
+
+" map <leader>ec to toggle Eclim disalbe/enable
+nnoremap <Leader>ee :call EclimToggle()<CR>
 
 " map <leader>bf to show buffers
 " map <leader>jkhl to change to windows
@@ -158,37 +127,60 @@ set foldlevel=1         "this is just what i use
 " match OverLength /\%81v.\+/
 set cc=80
 
+autocmd VimEnter * call EclimSoftDisable()
+
 " ctrlp can't find file adhoc fix
 let g:ctrlp_working_path_mode = 'c'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_map = '<c-l>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'ij'
 
 let g:ctrlp_max_files = 100
-let g:ctrlp_max_depth=10
+let g:ctrlp_max_depth=3
 
-" ctrlp show hidden file:
+
+"" ctrlp show hidden file:
 let g:ctrlp_show_hidden = 0
 
 " disable syntax and whitespace check
 let g:syntastic_check_on_wq = 0
 let g:aireline#extensions#whitespace#enable = 0
 
+" set EclimJavaSearch result action:
+let g:EclimJavaSearchSingleResult = 'edit'
+
+" set airline bar to show whether Eclim is avaible
+let g:airline_section_b = '%{IsEclimOk()}'
+let g:airline_section_z = airline#section#create([':%3v'])
+let g:airline#extensions#eclim#enabled = 1
+let g:airline#extension#default#section_truncate_width = {
+    \ 'b': 80,
+    \ 'x': 100,
+    \ 'y': 100,
+    \ 'warning': 40,
+    \ 'error': 40,
+    \ }
+
+let g:airline#extensions#branch#format = 0
+
 autocmd FileType c,cpp,java,python,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " enable airline tab extension
 let g:airline#extensions#tabline#enabled = 1
 
-" make YCM compatible with UltiSnips (using supertab)
+"" make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
+" Let YCM work with Eclim
+let g:EclimCompletionMethod = 'omnifunc'
 
 " Language tool jar location
 let g:languagetool_jar='$HOME/bin/languagetool/languagetool-commandline.jar'

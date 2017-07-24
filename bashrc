@@ -11,11 +11,15 @@ alias gitback="git checkout -"
 alias gitgo="git checkout"
 alias gg="git checkout"
 alias gmaster="git checkout origin/master --"
+alias grebasecont="git add -u && git rebase --continue"
 
 export PROMPT_COMMAND="history -a; history -n"
 
 #Default editor
 export EDITOR="/usr/bin/vi"
+
+# Change jrnl
+alias jrnl="${HOME}/personal_bin/locked-jrnl"
 
 # Set up bash completion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -59,7 +63,6 @@ alias sudo='sudo '
 alias c='pygmentize -O style=monokai -f console256 -g'
 
 # Git
-# You must install Git first
 alias gs='git status'
 alias ga='git add .'
 alias grm='git rm $(git ls-files --deleted)'

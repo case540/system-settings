@@ -67,3 +67,5 @@ $endif
 "\ep":history-search-backward
 "\en":history-search-forward
 set enable-bracketed-paste on
+"\e[5~":history-search-backward
+"\e[6~":history-search-forward
